@@ -1,0 +1,40 @@
+<!-- course_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Course List</title>
+</head>
+<body>
+    <h1>Course List</h1>
+
+    <!-- Search Form -->
+    <form method="get" action="{% url 'course_list' %}">
+        <input type="text" name="search" placeholder="Search...">
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- Department Filter Form -->
+    <form method="get" action="{% url 'course_list' %}">
+        <select name="department">
+            <option value="">All Departments</option>
+            <option value="department1">Department 1</option>
+            <option value="department2">Department 2</option>
+        </select>
+        <button type="submit">Filter by Department</button>
+    </form>
+    <!-- Filter Form (example: category) -->
+    <form method="get" action="{% url 'course_list' %}">
+        <select name="category">
+            <option value="">All Categories</option>
+            <option value="category1">Category 1</option>
+            <option value="category2">Category 2</option>
+        </select>
+        <button type="submit">Filter</button>
+    </form>
+    <ul>
+        {% for course in courses %}
+            <li>{{ course.title }} - {{ course.department }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
