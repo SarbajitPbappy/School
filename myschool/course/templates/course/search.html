@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block body %}
+<div style="padding-bottom: 25px;" class="main-banner" >
+
+</div>
+<section style="margin-top: -131px;" class="section courses" id="courses">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="section-heading">
+          <h2 class='text-white'>Your Search Result</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row event_box">
+      {% if course_list %}
+      {% for item in course_list %}
+      <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-12 design">
+        <div class="events_item ">
+          <div class="thumb">
+            <a href="#"><img src="{{ item.course_banner.url }}" alt=""></a>
+            <span class="category">{{item.course_department}}</span>
+            <span class="price">
+              <h6><em>$</em>{{item.course_price}}</h6>
+            </span>
+          </div>
+          <div class="down-content">
+            <h4 class="author">{{item.course_title}}</h4>
+            <p>{{item.course_description}}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% else %}
+      <div>
+        <h2>Please try again</h2>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

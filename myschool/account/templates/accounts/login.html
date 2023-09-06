@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block body %}
+<div style="padding-bottom: 25px;" class="main-banner">
+
+</div>
+
+<div class="contact-us section" id="contact" style="margin: auto; width: 50%;">
+    <div class="container">
+        <div class="contact-us-content text-white">
+            <form method="post" >
+                {% csrf_token %}
+                <h2 class='text-white text-center mt-3'>Teachers Login</h2>
+                <label for="username" class="form-label">User Name </label>
+                <input type="text" class="form-control" placeholder="User Name" name="username">
+                
+                <label for="username" class="form-label mt-3">Password </label>
+                <input type="password" class="form-control" placeholder="Password" name="password">
+                <button type="submit" class="btn btn-primary btn-block my-3"> Login </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,40 +1,59 @@
-<!-- course_list.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Course List</title>
-</head>
-<body>
-    <h1>Course List</h1>
+{% extends "base.html" %}
+{% block body %}
+<div style="padding-bottom: 25px;" class="main-banner" >
 
-    <!-- Search Form -->
-    <form method="get" action="{% url 'course_list' %}">
-        <input type="text" name="search" placeholder="Search...">
-        <button type="submit">Search</button>
-    </form>
+</div>
 
-    <!-- Department Filter Form -->
-    <form method="get" action="{% url 'course_list' %}">
-        <select name="department">
-            <option value="">All Departments</option>
-            <option value="department1">Department 1</option>
-            <option value="department2">Department 2</option>
-        </select>
-        <button type="submit">Filter by Department</button>
-    </form>
-    <!-- Filter Form (example: category) -->
-    <form method="get" action="{% url 'course_list' %}">
-        <select name="category">
-            <option value="">All Categories</option>
-            <option value="category1">Category 1</option>
-            <option value="category2">Category 2</option>
-        </select>
-        <button type="submit">Filter</button>
-    </form>
-    <ul>
-        {% for course in courses %}
-            <li>{{ course.title }} - {{ course.department }}</li>
-        {% endfor %}
+
+<section style="margin-top: -131px; margin-bottom: 150px;" class="section courses" id="courses">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="section-heading">
+          <h2 class='text-white'>Courses</h2>
+        </div>
+      </div>
+    </div>
+    <ul class="event_filter">
+      <li>
+        <a href="{% url 'course_list' %}" >Show All</a>
+      </li>
+      {% for item in department_list %}
+      <li>
+        <a href="{% url 'course_by_dep' item.slug %}" >{{item.department_name}}</a>
+      </li>
+      {% endfor %}
+
     </ul>
-</body>
-</html>
+
+    <div class="row event_box">
+      {% if course_list %}
+      {% for item in course_list %}
+      <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-12 design">
+        <div class="events_item ">
+          <div class="thumb">
+            {% if item.course_banner %}
+            <a href="#"><img src="{{ item.course_banner.url }}" alt=""></a>
+            {% endif %}
+            <span class="category">{{item.course_department}}</span>
+            <span class="price">
+              <h6><em>$</em>{{item.course_price}}</h6>
+            </span>
+          </div>
+          <div class="down-content">
+            <h4 class="author">{{item.course_title}}</h4>
+            <p>{{item.course_description}}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% else %}
+      <div>
+        <h2>No result found. Please try again</h2>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}
