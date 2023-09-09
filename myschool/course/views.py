@@ -6,7 +6,7 @@ from .forms import CourseForm
 from django.views.generic import TemplateView, ListView, UpdateView
 from django.views.generic.edit import DeleteView, CreateView
 from django.urls import reverse_lazy
-from MySchool import urls as home_urls
+from myschool import urls as home_urls
 # Create your views here.
 
 
